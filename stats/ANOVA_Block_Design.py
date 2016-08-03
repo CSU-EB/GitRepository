@@ -2,6 +2,8 @@
 ANOVA - Block Design Algorithm
     Note that the data must be a 'tuple of lists,' where each list must
     be of equal element count.
+    
+Author: up2572
 '''
 
 ############################## Test Dummy Data ################################
