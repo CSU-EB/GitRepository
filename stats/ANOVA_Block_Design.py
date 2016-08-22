@@ -1,5 +1,5 @@
 '''
-ANOVA - Block Design Algorithm
+ANOVA - Randomized Block Design
     Note that the data must be a 'tuple of lists,' where each list must
     be of equal element count.
     
@@ -7,7 +7,9 @@ Author: up2572
 '''
 
 ############################## Test Dummy Data ################################
-tupleOfLists = ([470, 530, 560, 590], [510, 540, 570, 610], [520, 550, 580, 620])
+# tupleOfLists = ([470, 530, 560, 590], [510, 540, 570, 610], [520, 550, 580, 620])
+# This next dataset is on page 428 of the Devore book.
+tupleOfLists = ([685,722,733,811,828],[792,806,802,888,920],[838,893,880,952,978],[875,953,941,1005,1023])
 ###############################################################################
 
 # Function Definitions:
