@@ -5,7 +5,7 @@ p = b.price(1000, .10, .10, 10, 2)
 print(str(p))
 help(b)
 
-utils = jeffs_lib.NumericUtilities()
+utils = jeffs_lib.StatUtilities()
 x = utils.convertStrListToList(utils.genRandStrList(13, 5, 0))
 
 if type(x) is list:
@@ -41,5 +41,13 @@ print('ok\n\n')
 
 print(utils.sampleVar(xList))
 print(utils.stdDeviation(xList))
-print('Correlation Coefficient:\n')
+print('Correlation Coefficient:')
 print(utils.correlationCoefficient(xList, yList)) # I'm not sure this works.
+
+v = jeffs_lib.Matrices()
+print(v.genVector(3, 3, 0))
+x = v.genMatrix(1,2)
+y = v.genMatrix(2, 7)
+#v.multiply(x, y)
+v = jeffs_lib.PAround()
+print(v.parseIt('hello there.'))

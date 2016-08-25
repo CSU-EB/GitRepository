@@ -71,7 +71,7 @@ class Bond:
 Odds and ends; some base classes I may use later.
 '''
 
-class NumericUtilities:
+class StatUtilities:
     def __init__(self):
         pass
     
@@ -120,6 +120,56 @@ class NumericUtilities:
         return math.sqrt(self.sampleVar(sList))
         
     
+class Matrices:
+    def __init__(self):
+        pass
+        
+    def genMatrix(self, numRows, numCols):
+        matrix = []
+        for i in range(numRows):
+            matrix.append(self.genVector(numCols, 3, 0))
+            
+        return matrix
+    
+    def genVector(self, size, integerPartLen, fractionalPartLen):
+        vector = []
+        decimalScaler = 10**integerPartLen
+        for i in range(size):
+            if fractionalPartLen > 0:
+                vector.append(round(random.random()*decimalScaler, fractionalPartLen))
+            else:
+                vector.append(round(random.random()*decimalScaler))
+            
+        return vector
+        
+    def multiply(self, m1, m2): # DEV
+        mProd = []
+        # m1 column count == m2 row count...multiply OK.
+        if len(m1[0]) == len(m2):
+            m1ColCnt = len(m1[0])
+            #m2ColCnt = len(m2[0])
+            for i in range(m1ColCnt):
+                for m2Row in m2[i]:
+                    
+                    print(rowElement)
+        # No go!
+        else:
+            print('Number of columns does not equal the number of rows.')
+            
+    def __matrixPreprocess(self, m2): # DEV
+        m = []
+        lengthOfRowVector = len(m2[0])
+        numOfRowVectors   = len(m2)
+        for i in range(lengthOfRowVector):
+            for j in range(numOfRowVectors):
+                m2[j][i]
+            
+class PAround:
+    def __init__(self):
+        pass
+        
+    def parseIt(self, string):
+        return string.split()
         
 ###############################################################################
         
