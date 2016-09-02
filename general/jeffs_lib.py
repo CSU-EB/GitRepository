@@ -124,6 +124,7 @@ class Matrices:
     def __init__(self):
         pass
         
+    # Dev - generate a matrix with specified number of rows, columns.
     def genMatrix(self, numRows, numCols):
         matrix = []
         for i in range(numRows):
@@ -131,6 +132,7 @@ class Matrices:
             
         return matrix
     
+    # Dev - generate a vector with random numbers, specified integer and fractional parts.
     def genVector(self, size, integerPartLen, fractionalPartLen):
         vector = []
         decimalScaler = 10**integerPartLen
@@ -142,9 +144,10 @@ class Matrices:
             
         return vector
         
-    def multiply(self, m1, m2): # DEV
+    # Check to see if matrices can be multiplied.
+    def multiply(self, m1, m2):
         mProd = []
-        # m1 column count == m2 row count...multiply OK.
+        # CHECK - m1 column count == m2 row count...multiply OK.
         if len(m1[0]) == len(m2):
             m1ColCnt = len(m1[0])
             #m2ColCnt = len(m2[0])
@@ -156,7 +159,7 @@ class Matrices:
         else:
             print('Number of columns does not equal the number of rows.')
             
-    def __matrixPreprocess(self, m2): # DEV
+    def __matrixPreprocess(self, m2): # DEV - will end up deleting this unfinished method.
         m = []
         lengthOfRowVector = len(m2[0])
         numOfRowVectors   = len(m2)
@@ -168,9 +171,41 @@ class PAround:
     def __init__(self):
         pass
         
+    # Dev test - creating list of words from a simple string.
     def parseIt(self, string):
         return string.split()
         
+    # Extracts and returns a column vector of the specified column index from givin matrix.
+    def __extractColumnVector(self, matrix, colIndex):
+        columnVector = []
+        for rowNum in range(len(matrix)):
+            columnVector.append(matrix[rowNum][colIndex])
+        return columnVector
+        
+    # Multiplies two matrices
+    def multiplyMatrices(self, m1, m2):
+        numOfColumns = len(m2[0])
+        resultantMatrix = []
+        indexCol = 0
+        for rowVector in m1:
+            resultantRowVector = []
+            while (indexCol < numOfColumns):
+                columnVector = self.__extractColumnVector(m2, indexCol)
+                resultantRowVector.append(self.__sumProduct(rowVector, columnVector))
+                indexCol += 1
+            resultantMatrix.append(resultantRowVector)
+            indexCol = 0
+        return resultantMatrix
+            
+    # Private - internal support method for matrix multiplication.
+    def __sumProduct(self, vector_1, vector_2):
+        sumProd = 0
+        for i in range(len(vector_1)):
+            sumProd += vector_1[i] * vector_2[i]
+        return sumProd
+            
+###############################################################################
+############# Below code shows how to run this file as script. ################
 ###############################################################################
         
 def Main():
