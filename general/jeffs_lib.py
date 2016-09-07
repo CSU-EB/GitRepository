@@ -144,37 +144,6 @@ class Matrices:
             
         return vector
         
-    # Check to see if matrices can be multiplied.
-    def multiply(self, m1, m2):
-        mProd = []
-        # CHECK - m1 column count == m2 row count...multiply OK.
-        if len(m1[0]) == len(m2):
-            m1ColCnt = len(m1[0])
-            #m2ColCnt = len(m2[0])
-            for i in range(m1ColCnt):
-                for m2Row in m2[i]:
-                    
-                    print(rowElement)
-        # No go!
-        else:
-            print('Number of columns does not equal the number of rows.')
-            
-    def __matrixPreprocess(self, m2): # DEV - will end up deleting this unfinished method.
-        m = []
-        lengthOfRowVector = len(m2[0])
-        numOfRowVectors   = len(m2)
-        for i in range(lengthOfRowVector):
-            for j in range(numOfRowVectors):
-                m2[j][i]
-            
-class PAround:
-    def __init__(self):
-        pass
-        
-    # Dev test - creating list of words from a simple string.
-    def parseIt(self, string):
-        return string.split()
-        
     # Extracts and returns a column vector of the specified column index from givin matrix.
     def __extractColumnVector(self, matrix, colIndex):
         columnVector = []
@@ -203,6 +172,18 @@ class PAround:
         for i in range(len(vector_1)):
             sumProd += vector_1[i] * vector_2[i]
         return sumProd
+            
+class PAround:
+    def __init__(self):
+        pass
+        
+    # DEV test - creating list of words from a simple string.
+    def parseIt(self, string):
+        return string.split()
+        
+    # DEV - Testing the trig function.
+    def sin(self, x):
+        return math.sin(x)
             
 ###############################################################################
 ############# Below code shows how to run this file as script. ################

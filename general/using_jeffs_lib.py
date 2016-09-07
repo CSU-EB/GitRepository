@@ -52,7 +52,13 @@ y = v.genMatrix(2, 7)
 v = jeffs_lib.PAround()
 print(v.parseIt('hello there.'))
 
+# Testing Matix Multiplication
+v = jeffs_lib.Matrices()
 m1 = [[6,7,33,28], [23,9,23,9],[65,28,11,3]]
 m2 = [[87,65,7,5,4,3,2,9,3], [7,6,4,3,9,4,33,44,2],[5,6,7,8,2,33,2,11,13],[7,6,54,3,8,9,4,3,22]]
 m = v.multiplyMatrices(m1, m2)
 print(m)
+
+v = jeffs_lib.PAround()
+print('Sin pi/6:')
+print(round(v.sin(0.523598775598298), 1))
