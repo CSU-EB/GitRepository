@@ -85,3 +85,10 @@ print('\n')
 v = jeffs_lib.Matrices()
 print(v.build_T_Matrix_Rot_2D(90, True))
 print(v.build_T_Matrix_Rot_2D(90, False))
+
+print(v.buildScaleTransformMatrix_3D(5,5,5))
+print(v.buildTranslationMatrix_3D(5,5,5))
+
+print(v.buildRxMatrix_3D(45, True))
+print(v.buildRyMatrix_3D(45, True))
+print(v.buildRzMatrix_3D(45, True))

@@ -123,7 +123,151 @@ class StatUtilities:
 class Matrices:
     def __init__(self):
         pass
+     
+    # Builds Rx Matrix, 3D.
+    def buildRxMatrix_3D(self, deg, rotR):
+        # Convert to radians
+        deg *= math.pi/180
         
+        # Initialize list
+        rx = []
+        
+        # First Row
+        n = []
+        n.append(1)
+        n.append(0)
+        n.append(0)
+        n.append(0)
+        rx.append(n)
+
+        # Second Row
+        n = []
+        n.append(0)
+        n.append(math.cos(deg))
+        if rotR:
+            n.append(-math.sin(deg))
+        else:
+            n.append(math.sin(deg))
+        n.append(0)
+        rx.append(n)
+
+        # Third Row
+        n = []
+        n.append(0)
+        if rotR:
+            n.append(math.sin(deg))
+        else:
+            n.append(-math.sin(deg))
+        n.append(math.cos(deg))
+        n.append(0)
+        rx.append(n)
+
+        # Fourth Row
+        n = []
+        n.append(0)
+        n.append(0)
+        n.append(0)
+        n.append(1)
+        rx.append(n)
+        
+        return rx
+     
+    # Builds Ry Matrix, 3D.
+    def buildRyMatrix_3D(self, deg, rotR):
+        # Convert to radians
+        deg *= math.pi/180
+        
+        # Initialize list
+        ry = []
+        
+        # First Row
+        n = []
+        n.append(math.cos(deg))
+        n.append(0)
+        if rotR:
+            n.append(math.sin(deg))
+        else:
+            n.append(-math.sin(deg))
+        n.append(0)
+        ry.append(n)
+
+        # Second Row
+        n = []
+        n.append(0)
+        n.append(1)
+        n.append(0)
+        n.append(0)
+        ry.append(n)
+
+        # Third Row
+        n = []
+        if rotR:
+            n.append(-math.sin(deg))
+        else:
+            n.append(math.sin(deg))
+        n.append(0)
+        n.append(math.cos(deg))
+        n.append(0)
+        ry.append(n)
+
+        # Fourth Row
+        n = []
+        n.append(0)
+        n.append(0)
+        n.append(0)
+        n.append(1)
+        ry.append(n)
+        
+        return ry
+     
+    # Builds Rz Matrix, 3D.
+    def buildRzMatrix_3D(self, deg, rotR):
+        # Convert to radians
+        deg *= math.pi/180
+        
+        # Initialize list
+        rz = []
+        
+        # First Row
+        n = []
+        n.append(math.cos(deg))
+        if rotR:
+            n.append(-math.sin(deg))
+        else:
+            n.append(math.sin(deg))
+        n.append(0)
+        n.append(0)
+        rz.append(n)
+
+        # Second Row
+        n = []
+        if rotR:
+            n.append(math.sin(deg))
+        else:
+            n.append(-math.sin(deg))
+        n.append(math.cos(deg))
+        n.append(0)
+        n.append(0)
+        rz.append(n)
+
+        # Third Row
+        n = []
+        n.append(0)
+        n.append(0)
+        n.append(1)
+        n.append(0)
+        rz.append(n)
+
+        # Fourth Row
+        n = []
+        n.append(0)
+        n.append(0)
+        n.append(0)
+        n.append(1)
+        rz.append(n)
+        
+        return rz
+     
     # Builds an Affine Transform matrix for 2D rotations.
     def build_T_Matrix_Rot_2D(self, deg, rotR):
         # Convert to radians
@@ -161,6 +305,84 @@ class Matrices:
         y.append(x)
         
         return y
+
+    # Builds the Scale 3D Transform Matrix.
+    def buildScaleTransformMatrix_3D(self, x, y, z):
+        # Initialize list
+        m = []
+        
+        # First Row
+        n = []
+        n.append(x)
+        n.append(0)
+        n.append(0)
+        n.append(0)
+        m.append(n)
+
+        # Second Row
+        n = []
+        n.append(0)
+        n.append(y)
+        n.append(0)
+        n.append(0)
+        m.append(n)
+
+        # Third Row
+        n = []
+        n.append(0)
+        n.append(0)
+        n.append(z)
+        n.append(0)
+        m.append(n)
+
+        # Fourth Row
+        n = []
+        n.append(0)
+        n.append(0)
+        n.append(0)
+        n.append(1)
+        m.append(n)
+        
+        return m
+        
+    # Builds Translation 3D transformation matrix.
+    def buildTranslationMatrix_3D(self, x, y, z):
+        # Initialize list
+        m = []
+        
+        # First Row
+        n = []
+        n.append(1)
+        n.append(0)
+        n.append(0)
+        n.append(0)
+        m.append(n)
+
+        # Second Row
+        n = []
+        n.append(0)
+        n.append(1)
+        n.append(0)
+        n.append(0)
+        m.append(n)
+
+        # Third Row
+        n = []
+        n.append(0)
+        n.append(0)
+        n.append(1)
+        n.append(0)
+        m.append(n)
+
+        # Fourth Row
+        n = []
+        n.append(x)
+        n.append(y)
+        n.append(z)
+        n.append(1)
+        m.append(n)
+        
+        return m
         
     # Dev - generate a matrix with specified number of rows, columns.
     def genMatrix(self, numRows, numCols):
