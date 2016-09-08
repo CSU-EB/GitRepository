@@ -60,5 +60,28 @@ m = v.multiplyMatrices(m1, m2)
 print(m)
 
 v = jeffs_lib.PAround()
+
+print('\n')
+print('Sin 0:')
+print(v.sin(0))
+print('\n')
+
 print('Sin pi/6:')
-print(round(v.sin(0.523598775598298), 1))
+print(v.sin(30))
+print('\n')
+
+print('Sin pi/4:')
+print(v.sin(45))
+print('\n')
+
+print('Sin pi/3:')
+print(v.sin(60))
+print('\n')
+
+print('Sin pi/2:')
+print(v.sin(90))
+print('\n')
+
+v = jeffs_lib.Matrices()
+print(v.build_T_Matrix_Rot_2D(90, True))
+print(v.build_T_Matrix_Rot_2D(90, False))

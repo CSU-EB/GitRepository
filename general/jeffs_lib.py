@@ -124,6 +124,44 @@ class Matrices:
     def __init__(self):
         pass
         
+    # Builds an Affine Transform matrix for 2D rotations.
+    def build_T_Matrix_Rot_2D(self, deg, rotR):
+        # Convert to radians
+        deg *= math.pi/180
+        
+        # Initialize lists
+        x = []
+        y = []
+        
+        # Build affine transformation matrix
+        # First Row
+        x.append(math.cos(deg))
+        if rotR:
+            x.append(math.sin(deg))
+        else:
+            x.append(-math.sin(deg))
+        x.append(0)
+        y.append(x)
+        
+        # Second Row
+        x = []
+        if rotR:
+            x.append(-math.sin(deg))
+        else:
+            x.append(math.sin(deg))
+        x.append(math.cos(deg))
+        x.append(0)
+        y.append(x)
+        
+        # Third Row
+        x = []
+        x.append(0)
+        x.append(0)
+        x.append(1)
+        y.append(x)
+        
+        return y
+        
     # Dev - generate a matrix with specified number of rows, columns.
     def genMatrix(self, numRows, numCols):
         matrix = []
@@ -182,7 +220,11 @@ class PAround:
         return string.split()
         
     # DEV - Testing the trig function.
+    # I am requiring degree input parameter because of nice integer numbers, mostly.
     def sin(self, x):
+        # Convert to radians
+        x *= math.pi/180
+        
         return math.sin(x)
             
 ###############################################################################
