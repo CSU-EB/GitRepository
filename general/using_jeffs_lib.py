@@ -94,3 +94,6 @@ print(v.buildRxMatrix_3D(45, True))
 print(v.buildRyMatrix_3D(45, True))
 print(v.buildRzMatrix_3D(45, True))
 # help(v)
+
+print('Printing the Method Resolution Order, i.e. the Search Order:')
+print(jeffs_lib.LoggingOD.__mro__)

@@ -3,6 +3,7 @@ Reference: http://effbot.org/pyfaq/tutor-what-is-if-name-main-for.htm
 '''
 
 import ast
+import collections
 import math
 import random
 from datetime import datetime
@@ -118,8 +119,32 @@ class StatUtilities:
         
     def stdDeviation(self, sList):
         return math.sqrt(self.sampleVar(sList))
+
+############################################################################DEV
+##################### Raymond Hettinger Discussion: ########################DEV
+#####################    Method Resolution Order ###########################DEV
+############################################################################DEV
+'''
+This class, LoggingDict, was gleaned from:
+Reference: https://rhettinger.wordpress.com/
+
+This class has all the same capabilities as its parent, dict, but it extends
+the __setitem__ method to make log entries whenever a key is updated. After
+making a log entry, the method uses super() to delegate the work for actually
+updating the dictionary with the key/value pair.
+'''
+class LoggingDict(dict):
+    def __setitem__(self, key, value):
+        logging.info('Settingto %r' % (key, value))
+        super().__setitem__(key, value)
         
-    
+class LoggingOD(LoggingDict, collections.OrderedDict):
+    pass
+
+############################################################################DEV
+###################### End: Raymond Hettinger ##############################DEV
+############################################################################DEV
+
 class Matrices:
     def __init__(self):
         pass
