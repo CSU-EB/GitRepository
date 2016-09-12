@@ -6,6 +6,7 @@ import ast
 import collections
 import math
 import random
+import pymysql
 from datetime import datetime
 from dateutil.parser import *
 
@@ -119,6 +120,23 @@ class StatUtilities:
         
     def stdDeviation(self, sList):
         return math.sqrt(self.sampleVar(sList))
+        
+class TheDataStore:
+    def __init__(self):
+        pass
+        
+    def __makeDbConnection(self, domain, user, passwd, dbName):
+        self.db = pymysql.connect(domain, user, passwd, dbName)
+        
+    def makeTable(self, tableName):
+        # Need to replace this with a prop lookup...Currently for DEV purposes only.
+        self.__makeDbConnection('localhost', 'root', '', 'test')
+        cursor = self.db.cursor()
+        cursor.execute('DROP TABLE IF EXISTS ' + tableName)
+        sql = 'CREATE TABLE ' + tableName + '( fname char(20) not null)'
+        cursor.execute(sql)
+        self.db.close()
+        
 
 ############################################################################DEV
 ##################### Raymond Hettinger Discussion: ########################DEV
@@ -461,6 +479,24 @@ class Matrices:
 class PAround:
     def __init__(self):
         pass
+        
+    # DEV
+    def testDB(self, domain, user, passwd, dbName):
+        db = pymysql.connect(domain, user, passwd, dbName)
+        cursor = db.cursor()
+        try:
+            cursor.execute("SELECT * FROM user")
+            results = cursor.fetchall()
+            for row in results:
+                fname = row[1]
+                lname = row[2]
+                dob = row[3]
+            
+                print("fname=%s, lname=%s, dob=%s" % (fname, lname, dob))
+        except:
+            print('Error: unable to fetch data.')
+            
+        db.close()
         
     # DEV test - creating list of words from a simple string.
     def parseIt(self, string):

@@ -97,3 +97,10 @@ print(v.buildRzMatrix_3D(45, True))
 
 print('Printing the Method Resolution Order, i.e. the Search Order:')
 print(jeffs_lib.LoggingOD.__mro__)
+
+v = jeffs_lib.PAround()
+v.testDB('localhost', 'root', '', 'test')
+
+ds = jeffs_lib.TheDataStore()
+ds.makeTable('Jonsie')
+
