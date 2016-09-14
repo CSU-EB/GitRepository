@@ -103,4 +103,8 @@ v.testDB('localhost', 'root', '', 'test')
 
 ds = jeffs_lib.TheDataStore()
 ds.makeTable('Jonsie')
+ds.dbConnect(['localhost', 'root', '', 'test'])
+ds.makeTable2('Jonsie2')
+ds.dbCleanup()
+
 

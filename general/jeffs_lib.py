@@ -125,6 +125,22 @@ class TheDataStore:
     def __init__(self):
         pass
         
+    def dbCleanup(self):
+        self.db.close()
+
+    def dbConnect(self, connectionParametersList):
+        # Parameters shall be in the following order: domain, user, passwd, dbName.
+#        print('parameterList: ' + connectionParametersList[0] + ', ' + connectionParametersList[1] + ', ' + connectionParametersList[2] + ', ' + connectionParametersList[3])
+        try:
+            self.db = pymysql.connect(connectionParametersList[0], connectionParametersList[1],
+                connectionParametersList[2], connectionParametersList[3])
+        except Exception as inst:
+            # The Exception instance itself:
+            print('***** We had an error in dbConnect: ' + str(type(inst)))
+            
+        # DEV - Must remove this from method, to preserve instance-level variable: self.db
+        # self.db.close()
+        
     def __makeDbConnection(self, domain, user, passwd, dbName):
         self.db = pymysql.connect(domain, user, passwd, dbName)
         
@@ -136,6 +152,12 @@ class TheDataStore:
         sql = 'CREATE TABLE ' + tableName + '( fname char(20) not null)'
         cursor.execute(sql)
         self.db.close()
+        
+    def makeTable2(self, tableName):
+        cursor = self.db.cursor()
+        cursor.execute('DROP TABLE IF EXISTS ' + tableName)
+        sql = 'CREATE TABLE ' + tableName + '( fname char(20) not null)'
+        cursor.execute(sql)
         
 
 ############################################################################DEV
