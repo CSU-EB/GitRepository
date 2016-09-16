@@ -101,10 +101,16 @@ print(jeffs_lib.LoggingOD.__mro__)
 v = jeffs_lib.PAround()
 v.testDB('localhost', 'root', '', 'test')
 
-ds = jeffs_lib.TheDataStore()
-ds.makeTable('Jonsie')
-ds.dbConnect(['localhost', 'root', '', 'test'])
-ds.makeTable2('Jonsie2')
-ds.dbCleanup()
+# The commeted out code below works.
+#ds = jeffs_lib.TheDataStore()
+# Note: recognize the parameter to dbConnect() is a list!
+#ds.dbConnect(['localhost', 'root', '', 'test'])
+
+#for n in range(13):
+#    ds.mkTable(['jonsie' + str(n)])
+#for n in range(13):
+#    ds.rmTable('jonsie' + str(n))
+
+#ds.dbCleanup()
 
 

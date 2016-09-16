@@ -132,8 +132,7 @@ class TheDataStore:
         # Parameters shall be in the following order: domain, user, passwd, dbName.
 #        print('parameterList: ' + connectionParametersList[0] + ', ' + connectionParametersList[1] + ', ' + connectionParametersList[2] + ', ' + connectionParametersList[3])
         try:
-            self.db = pymysql.connect(connectionParametersList[0], connectionParametersList[1],
-                connectionParametersList[2], connectionParametersList[3])
+            self.db = pymysql.connect(connectionParametersList[0], connectionParametersList[1], connectionParametersList[2], connectionParametersList[3])
         except Exception as inst:
             # The Exception instance itself:
             print('***** We had an error in dbConnect: ' + str(type(inst)))
@@ -153,13 +152,33 @@ class TheDataStore:
         cursor.execute(sql)
         self.db.close()
         
-    def makeTable2(self, tableName):
-        cursor = self.db.cursor()
-        cursor.execute('DROP TABLE IF EXISTS ' + tableName)
-        sql = 'CREATE TABLE ' + tableName + '( fname char(20) not null)'
-        cursor.execute(sql)
+    # 'fieldSpecList' shall have three parameters, in this order: tableName, fieldName, and fieldType.
+    def mkField(self, fieldSpecList):
+        try:
+            cursor = self.db.cursor()
+            cursor.execute('ALTER TABLE ' + fieldSpecList[0] + ' ADD ' + fieldSpecList[1] + ' ' + fieldSpecList[2])
+        except Exception as inst:
+            # The Exception instance itself:
+            print('***** We had an error in mkField: ' + str(type(inst)))
+    
+    def mkTable(self, tableSpecList):
+        try:
+            cursor = self.db.cursor()
+            cursor._defer_warnings = True
+            cursor.execute('DROP TABLE IF EXISTS ' + str(tableSpecList[0]) + ';')
+            sql = 'CREATE TABLE ' + str(tableSpecList[0]) + ' ( fname VARCHAR(45));'
+            cursor.execute(sql)
+        except Exception as inst:
+            print('***** We had an error in mkTable: ' + str(type(inst)))
         
-
+    def rmTable(self, tableName):
+        try:
+            cursor = self.db.cursor()
+            cursor.execute('DROP TABLE IF EXISTS ' + tableName)
+        except Exception as inst:
+            # The Exception instance itself:
+            print('***** We had an error in rmTable: ' + str(type(inst)))
+        
 ############################################################################DEV
 ##################### Raymond Hettinger Discussion: ########################DEV
 #####################    Method Resolution Order ###########################DEV
